@@ -17,7 +17,7 @@
         </div><!-- End Page Title -->
             
         <div class="col-lg-6" style="text-align:right; align-items:center">
-            <button type="button" class="btn btn-primary"><i class="bi bi-plus me-1" data-bs-toggle="modal" data-bs-target="#largeModal"></i> Add</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal"><i class="bi bi-plus me-1"></i> Add</button>
         </div>
     </div>
 </section>
