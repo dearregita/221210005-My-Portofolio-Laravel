@@ -32,7 +32,7 @@
                       <i class="bi bi-person"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>150 Data</h6>
+                      <h6>{{ $user }}</h6>
 
                     </div>
                   </div>
@@ -53,7 +53,7 @@
                       <i class="bi bi-envelope"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>200 Data</h6>
+                      <h6>{{ $contactus }}</h6>
 
                     </div>
                   </div>
@@ -75,7 +75,7 @@
                       <i class="bi bi-briefcase"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>20 Data</h6>
+                      <h6>{{ $result }}</h6>
 
                     </div>
                   </div>
@@ -88,7 +88,7 @@
         </div>
 
         <!-- Left side columns -->
-    
+{{--     
         <div class="card col-lg-8">
             <div class="card-body">
               <h5 class="card-title">Recent Activity <span>| Today</span></h5>
@@ -127,13 +127,14 @@
               <!-- End Default Table Example -->
             </div>
 
-        </div><!-- End Left side columns -->
+        </div> --}}
+        <!-- End Left side columns -->
 
         <!-- Right side columns -->
-        <div class="col-lg-4">
+        {{-- <div class="col-lg-4"> --}}
 
         <!-- Website Traffic -->
-        <div class="card">
+        {{-- <div class="card">
         <div class="card-body pb-0">
             <h5 class="card-title">Summary Profile</h5>
 
@@ -190,7 +191,7 @@
             });
             </script>
 
-        </div>
+        </div> --}}
         </div><!-- End Website Traffic -->
 
         </div><!-- End Right side columns -->

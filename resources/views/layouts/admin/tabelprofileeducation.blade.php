@@ -17,35 +17,40 @@
         </div><!-- End Page Title -->
             
         <div class="col-lg-6" style="text-align:right; align-items:center">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal"><i class="bi bi-plus me-1"></i> Add</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-target="#AddData" data-bs-target="#AddData"><i class="bi bi-plus me-1"></i> Add</button>
         </div>
     </div>
 </section>
 
 
-
+@if(Session::has('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Berhasil!</strong> {{ Session::get("success") }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 
 <!-- Tabel -->
     <div class="card">
         <div class="card-body">
 
-            <!-- Tab Link -->
-                <div class="card-header">
-                    <ul class="nav nav-pills card-header-pills">
-                        <li class="nav-item">
-                        <a class="nav-link " href="{{ route('tabelprofileexperience') }}">Experience</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('tabelprofileeducation') }}">Education</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ route('tabelprofileskill') }}">Skill</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ route('tabelprofiletools') }}">Tools</a>
-                        </li>
-                    </ul>
-                </div><!-- End Tab Link -->
+             <!-- Tab Link -->
+             <div class="card-header">
+                <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url('admin/profile') }}">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link active" href="{{ url('admin/profile/education') }}">Education</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url('admin/profile/skill') }}">Skill</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ url('admin/profile/tools') }}">Tools</a>
+                    </li>
+                </ul>
+        </div><!-- End Tab Link -->
 
             <!-- Default Table education -->
                     <table class="table" id="education">
@@ -61,29 +66,22 @@
                         </tr>
                         </thead>
                         <tbody>
+                            @foreach($profile_education as $education)
+
                             <tr class="fill">
-                                <th scope="row"><div class="description">1</div></th>
-                                <td class="fill" ><div class="description">2021</div></td>
-                                <td class="fill" ><div class="description">Present</div></td>
-                                <td class="fill" ><div class="description">Sistem Informasi</div></td>
-                                    <td class="fill" ><div class="description">Universitas Mercubuana Yogyakarta</div></td>
-                                    <td class="fill" ><div class="description">I took the information systems study program, for the reason that the study program is in accordance with my current field of work.</div></td>
-                                    <td class="fill"><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#largeModal">Edit</button>
-                                        <span><button type="button" class="btn btn-link" style="color:#dc3545;" onclick="alert('Apakah Anda Yakin Menghapus Data ini?')">Delete</button></span>
-                                    </td>
+                                <th scope="row"><div class="description">{{ $education->id }}</div></th>
+                                <td class="fill" ><div class="description">{{ $education->start_date }}</div></td>
+                                <td class="fill" ><div class="description">{{ $education->end_date }}</div></td>
+                                <td class="fill" ><div class="description">{{ $education->major }}</div></td>
+                                    <td class="fill" ><div class="description">{{ $education->school_name }}</div></td>
+                                    <td class="fill" ><div class="description">{{ $education->description }}</div></td>
+                                    <td class="fill"><button type="button" class="btn btn-link" data-bs-toggle="modal"><a href="{{ route('education.edit', $education->id) }}">Edit</a></button>
+                                        <span>
+                                            <a href="{{ route('education.distroy', $education->id) }}" class="btn btn-link" style="color:#dc3545;" onclick="return confirm('Apakah Anda Yakin Menghapus Data ini?')">Delete</a>
+                                        </span></td>
                             </tr>
-                            <tr class="fill">
-                                <th scope="row"><div class="description">2</div></th>
-                                <td class="fill" ><div class="description">2018</div></td>
-                                <td class="fill" ><div class="description">2021</div></td>
-                                <td class="fill" ><div class="description">Rekayasa Perangkat Lunak</div></td>
-                                    <td class="fill" ><div class="description">SMK Telkom Malang</div></td>
-                                    <td class="fill" ><div class="description">I majored in RPL, where I learned a lot. Learning PHP programming language and focusing on using Laravel(BackEnd) and Vue.Js(FrontEnd) frameworks. </div></td>
-                                    <td class="fill"><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#largeModal">Edit</button>
-                                        <span><button type="button" class="btn btn-link" style="color:#dc3545;" onclick="alert('Apakah Anda Yakin Menghapus Data ini?')">Delete</button></span>
-                                    </td>
-                            </tr>
-                        
+                            @endforeach
+
                         </tbody>
                     </table>
                     <!-- End Default Table Example education -->
@@ -94,46 +92,48 @@
         </div>
     </div><!-- End Tabel -->
 
-    <!-- Modal-->
-    <div class="modal fade" id="largeModal" tabindex="-1">
+    <!-- Add Modal -->
+    <div class="modal fade" id="AddData" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Form Education</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <div class="modal-body">
-                    <form class="row g-3">
+                    <form class="row g-3" action="{{ route('education.store') }}" method="POST" enctype="multipart/form-data">
+                        
+                        {{ csrf_field() }}
                             <div class="col-md-6">
                                 <label for="basic-url" class="form-label">Start Date :</label>
-                                <input class="form-control" placeholder="Start Date" type="date" id="floatingInput">
+                                <input class="form-control" name="start_date" placeholder="Start Date" type="date" id="floatingInput">
                             </div>
                             <div class="col-md-6">
                                 <label for="basic-url" class="form-label">End Date :</label>
-                                <input class="form-control" placeholder="End Date" type="date" id="floatingInput">
+                                <input class="form-control" name="end_date"placeholder="End Date" type="date" id="floatingInput">
                             </div>
                             <div class="col-md-6">
                                 <label for="basic-url" class="form-label">Major :</label>
-                                <input class="form-control" placeholder="Input Major" type="input" id="floatingInput">
+                                <input class="form-control" name="major" placeholder="Input Major" type="input" id="floatingInput">
                             </div> 
                             <div class="col-md-6">
                                 <label for="basic-url" class="form-label">School Name :</label>
-                                <input class="form-control" placeholder="Input School Name" type="input" id="floatingInput">
+                                <input class="form-control" name="school_name" placeholder="Input School Name" type="input" id="floatingInput">
                             </div>
                             <div class="col-md-6">
                                 <label for="basic-url" class="form-label">Description :</label>
-                                <input class="form-control" placeholder="Input Description" type="input" id="floatingInput">
-                            </div>                 
+                                <input class="form-control"  name="description" placeholder="Input Description" type="input" id="floatingInput">
+                            </div>                
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
                     </form>
                 </div>
             </div>
         </div><!-- End Vertically centered Modal-->
-    </div> <!-- Edit Modal-->
-
+    </div> <!-- Add Modal -->
 </main>
 
 @endsection

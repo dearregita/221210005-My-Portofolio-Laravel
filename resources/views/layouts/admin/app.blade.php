@@ -91,27 +91,27 @@
 
         <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="{{ route('tabelhome') }}" class="active">
+            <a href="{{ url('admin/home') }}" class="active">
               <i class="bi bi-circle"></i><span>Home</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('tabelprofileexperience') }}">
+            <a href="{{ url('admin/profile') }}">
               <i class="bi bi-circle"></i><span>Profile</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('tabelcontact-us') }}">
+            <a href="{{ url('admin/contactus') }}">
               <i class="bi bi-circle"></i><span>Contact Us</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('tabeluser') }}">
+            <a href="{{ url('admin/user') }}">
               <i class="bi bi-circle"></i><span>User</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('tabelinkfooter') }}">
+            <a href="{{ url('admin/footer') }}">
               <i class="bi bi-circle"></i><span>Link Footer</span>
             </a>
           </li>

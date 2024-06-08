@@ -1,36 +1,37 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
+use App\Models\Footer;
 
 use Illuminate\Http\Request;
 
-class AdminTabelUserController extends Controller
+class AdminFooterController extends Controller
 {
-    public function __construct(User $users, Request $request)
+    public function __construct(Footer $footers, Request $request)
     {
-        $this->tabeluser = $users;
+        $this->tabelinkfooter = $footers;
         $this->request = $request;
     }
 
     public function index()
     {
-        $users = $this->tabeluser->getWithPagination();
+        $footers = $this->tabelinkfooter->getWithPagination();
+        dd($footers);
 
-        return view('layouts.admin.tabeluser', compact('users'));
+        return view('layouts.admin.tabelinkfooter', compact('footers'));
     }
 
     public function create()
     {
-        $users = $this->tabeluser->getWithPagination();
+        $footers = $this->tabelinkfooter->getWithPagination();
 
-        return view('layouts.admin.tabeluser', compact('users'));
+        return view('layouts.admin.tabelinkfooter', compact('footers'));
     }
 
     public function store(Request $request)
     {
         // dd($request->all());
-        $this->tabeluser->saveData($request->all());
+        $this->tabelinkfooter->saveData($request->all());
 
         return redirect()->back();
         
@@ -38,28 +39,28 @@ class AdminTabelUserController extends Controller
 
     public function edit($id)
     {
-        $users = $this->tabeluser->getById($id);
+        $footers = $this->tabelinkfooter->getById($id);
 
-        // dd($users);
+        // dd($footer);
         
-        return view('layouts.admin.user.edit', compact('users'));
+        return view('layouts.admin.footer.edit', compact('footers'));
     }
 
     public function update(Request $request, $id)
     {
-        $this->tabeluser->updateData($id, $request->all());
+        $this->tabelinkfooter->updateData($id, $request->all());
 
         $notification = array(
             'success'   => 'Berhasil Diubah',
         );
 
-        return redirect('/admin/user')->with($notification);
+        return redirect('/admin/footer')->with($notification);
 
     }
 
     public function distroy($id)
     {
-        $profile =  User::find($id);
+        $profile =  footer::find($id);
         // if ($profile) {
         //     Storage::disk('local')->delete('public/profiles/'.basename($profile->resume));
         // }
@@ -69,7 +70,7 @@ class AdminTabelUserController extends Controller
             'success'   => 'Berhasil Dihapus',
         );
 
-        return redirect('/admin/user')->with($notification);
+        return redirect('/admin/footer')->with($notification);
 
 
         //redirect to index

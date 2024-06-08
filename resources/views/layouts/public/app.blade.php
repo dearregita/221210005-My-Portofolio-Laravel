@@ -22,12 +22,12 @@
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
                 <div class="container px-5">
-                    <a class="navbar-brand" href="{{ route('home') }}"><span class="fw-bolder text-primary">Dear Profile</span></a>
+                    <a class="navbar-brand" href="{{ url('/') }}"><span class="fw-bolder text-primary">Dear Profile</span></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('profile') }}">Profile</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('profiles') }}">Profile</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('contact-us') }}">Contact Us</a></li>
                             <li class="nav-item"><a class="btn btn-primary btn-lg px-4 py-2 me-sm-2 fs-6 fw-bolder" href="{{ route('login') }}">Login</a></li>
                         </ul>
@@ -39,16 +39,22 @@
         
         <!-- Footer-->
         <footer class="bg-white py-4 mt-auto">
+
             <div class="container px-5">
                 <div class="row align-items-center justify-content-between flex-column flex-sm-row">
                     <div class="col-auto"><div class="small m-0">With <i class="bi bi-heart"></i> from 221210005-Dear </div></div>
+
                     <div class="col-auto">
-                        <a class="small" target="__blank" href="https://wa.me/6282177371875">Contact</a>
+                        @foreach($footer as $f)
+                        <a class="small" target="__blank" href="{{ $f->link }}">{{$f->footer_name}}</a>
                         <span class="mx-1">&middot;</span>
-                        <a class="small" href="https://wa.me/6282177371875">Help</a>
+                        @endforeach
+
                     </div>
+
                 </div>
             </div>
+
         </footer>
 
         <!-- Bootstrap core JS-->

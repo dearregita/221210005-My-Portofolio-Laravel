@@ -8,11 +8,11 @@
                         <div class="col-xxl-5">
                             <!-- Header text content-->
                             <div class="text-center text-xxl-start">
-                                <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase"> UI/UX Designer &middot; Designer</div></div>
+                                <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase"> {{ $home->work }}</div></div>
                                 <div class="fs-3 fw-light text-muted">I can help your business to, I am</div>
-                                <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Dear Regita Permatasari</span></h1>
+                                <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">{{ $home->name }}</span></h1>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
-                                    <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="{{ route('profile') }}">Profile</a>
+                                    <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="{{ route('profiles') }}">Profile</a>
                                     <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="{{ route('contact-us') }}">Contact Us</a>
                                 </div>
                             </div>
@@ -23,7 +23,8 @@
                                 <div class="profile bg-gradient-primary-to-secondary">
                                     <!-- TIP: For best results, use a photo with a transparent background like the demo example below-->
                                     <!-- Watch a tutorial on how to do this on YouTube (link)-->
-                                    <img class="profile-img" src="{{ asset('assets/public/assets/profile.png') }} " alt="..." />                                    <div class="dots-1">
+                                    <img class="profile-img" src="{{ $home->photo }}" alt="..." />                                    
+                                    <div class="dots-1">
                                         <!-- SVG Dots-->
                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background: new 0 0 191.6 1215.4" xml:space="preserve">
                                             <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)">
@@ -149,13 +150,13 @@
                             <div class="text-center my-5">
                                 <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">About Me</span></h2>
                                 <p class="lead fw-light mb-4">My name Is Dear and I can help your business grow.</p>
-                                <p class="text-muted">User Interface and User Experience Designer with 2 years of working experience. Graduated from SMK Telkom Malang and currently studying at Mercubuana University Yogyakarta. Working at PT Infosys Solusi Terpadu.</p>
+                                <p class="text-muted">{{ $home->description }}</p>
                                 <div class="d-flex justify-content-center fs-2 gap-4">
-                                    <a class="text-gradient" target="__blank" href="https://instagram.com/dearr.eg/"><i class="bi bi-instagram"></i></a>
-                                    <a class="text-gradient" target="__blank" href="https://linkedin.com/in/dear-regita-permatasari-09287b1a1/"><i class="bi bi-linkedin"></i></a>
+                                    <a class="text-gradient" target="__blank" href="{{ $home->social_media }}"><i class="bi bi-instagram"></i></a>
+                                    {{-- <a class="text-gradient" target="__blank" href="https://linkedin.com/in/dear-regita-permatasari-09287b1a1/"><i class="bi bi-linkedin"></i></a>
                                     <a class="text-gradient" target="__blank" href="https://github.com/dearregita"><i class="bi bi-github"></i></a>
                                     <a class="text-gradient" target="__blank" href="https://www.behance.net/dearregita"><i class="bi bi-behance"></i></a>
-                                    <a class="text-gradient" target="__blank" href="https://dribbble.com/dearregita_"><i class="bi bi-dribbble"></i></a>
+                                    <a class="text-gradient" target="__blank" href="https://dribbble.com/dearregita_"><i class="bi bi-dribbble"></i></a> --}}
                                 </div>
                             </div>
                         </div>

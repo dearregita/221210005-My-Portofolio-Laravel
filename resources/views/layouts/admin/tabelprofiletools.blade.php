@@ -17,35 +17,40 @@
         </div><!-- End Page Title -->
 
         <div class="col-lg-6" style="text-align:right; align-items:center">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal"><i class="bi bi-plus me-1"></i> Add</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-target="#AddData" data-bs-target="#AddData"><i class="bi bi-plus me-1"></i> Add</button>
         </div>
     </div>
 </section>
 
 
-
+@if(Session::has('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Berhasil!</strong> {{ Session::get("success") }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 
 <!-- Tabel -->
     <div class="card">
         <div class="card-body">
 
-            <!-- Tab Link -->
-            <div class="card-header">
-                    <ul class="nav nav-pills card-header-pills">
-                        <li class="nav-item">
-                        <a class="nav-link " href="{{ route('tabelprofileexperience') }}">Experience</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ route('tabelprofileeducation') }}">Education</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ route('tabelprofileskill') }}">Skill</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('tabelprofiletools') }}">Tools</a>
-                        </li>
-                    </ul>
-            </div><!-- End Tab Link -->
+           <!-- Tab Link -->
+           <div class="card-header">
+            <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item">
+                <a class="nav-link" href="{{ url('admin/profile') }}">Experience</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{ url('admin/profile/education') }}">Education</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{ url('admin/profile/skill') }}">Skill</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link active" href="{{ url('admin/profile/tools') }}">Tools</a>
+                </li>
+            </ul>
+    </div><!-- End Tab Link -->
 
 
              <!-- Default Table tools -->
@@ -58,52 +63,20 @@
                         </tr>
                         </thead>
                         <tbody>
+                            @foreach($profile_tool as $tools)
                             <tr class="fill">
-                                <th scope="row"><div class="description">1</div></th>
-                                <td class="fill" ><div class="description">Figma</div></td>
-                                    <td class="fill"><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#largeModal">Edit</button>
-                                        <span><button type="button" class="btn btn-link" style="color:#dc3545;" onclick="alert('Apakah Anda Yakin Menghapus Data ini?')">Delete</button></span>
-                                    </td>
+                                <th scope="row"><div class="description">{{ $tools->id }}</div></th>
+                                <td class="fill" ><div class="description">{{ $tools->tools_name }}</div></td>
+                                <td class="fill"><button type="button" class="btn btn-link" data-bs-toggle="modal"><a href="{{ route('tools.edit', $tools->id) }}">Edit</a></button>
+                                    <span>
+                                        <a href="{{ route('tools.distroy', $tools->id) }}" class="btn btn-link" style="color:#dc3545;" onclick="return confirm('Apakah Anda Yakin Menghapus Data ini?')">Delete</a>
+                                    </span></td>
                             </tr>
-                            <tr class="fill">
-                                <th scope="row"><div class="description">2</div></th>
-                                <td class="fill" ><div class="description">Adobe XD</div></td>
-                                    <td class="fill"><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#largeModal">Edit</button>
-                                        <span><button type="button" class="btn btn-link" style="color:#dc3545;" onclick="alert('Apakah Anda Yakin Menghapus Data ini?')">Delete</button></span>
-                                    </td>
-                            </tr>
-                            <tr class="fill">
-                                <th scope="row"><div class="description">3</div></th>
-                                <td class="fill" ><div class="description">LottieFiles<</div></td>
-                                    <td class="fill"><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#largeModal">Edit</button>
-                                        <span><button type="button" class="btn btn-link" style="color:#dc3545;" onclick="alert('Apakah Anda Yakin Menghapus Data ini?')">Delete</button></span>
-                                    </td>
-                            </tr>
-                            <tr class="fill">
-                                <th scope="row"><div class="description">4</div></th>
-                                <td class="fill" ><div class="description">Marvel</div></td>
-                                    <td class="fill"><button type="button" class="btn btn-link">Edit</button>
-                                        <span><button type="button" class="btn btn-link" style="color:#dc3545;">Delete</button></span>
-                                    </td>
-                            </tr>
-                            <tr class="fill">
-                                <th scope="row"><div class="description">5</div></th>
-                                <td class="fill" ><div class="description">Adobe Illustration</div></td>
-                                    <td class="fill"><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#largeModal">Edit</button>
-                                        <span><button type="button" class="btn btn-link" style="color:#dc3545;" onclick="alert('Apakah Anda Yakin Menghapus Data ini?')">Delete</button></span>
-                                    </td>
-                            </tr>
-                            <tr class="fill">
-                                <th scope="row"><div class="description">6</div></th>
-                                <td class="fill" ><div class="description">Adobe After Effect</div></td>
-                                    <td class="fill"><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#largeModal">Edit</button>
-                                        <span><button type="button" class="btn btn-link" style="color:#dc3545;" onclick="alert('Apakah Anda Yakin Menghapus Data ini?')">Delete</button></span>
-                                    </td>
-                            </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
-                    <!-- End Default Table Example skill -->
+                    <!-- End Default Table Example tools -->
                     
                     </div>
             </div><!-- End Tabel tools -->
@@ -111,29 +84,33 @@
         </div>
     </div><!-- End Tabel -->
 
-    <!-- Modal-->
-    <div class="modal fade" id="largeModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Form Tools</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="row g-3">
-                            <div class="col-md-6">
-                                <label for="basic-url" class="form-label">Tools Name :</label>
-                                <input class="form-control" placeholder="Input Tools Name" type="input" id="floatingInput">  
-                            </div>              
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                    </form>
-                </div>
+    <!-- Add Modal -->
+ <div class="modal fade" id="AddData" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Form Tools</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        </div><!-- End Vertically centered Modal-->
-    </div> <!-- Edit Modal-->
+
+            <div class="modal-body">
+                <form class="row g-3" action="{{ route('tools.store') }}" method="POST" enctype="multipart/form-data">
+                    
+                    {{ csrf_field() }}
+                       
+                        <div class="col-md-6">
+                            <label for="basic-url" class="form-label">Tools Name :</label>
+                            <input class="form-control" name="tools_name" placeholder="Input Tools Name" type="input" id="floatingInput">
+                        </div>               
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- End Vertically centered Modal-->
+</div> <!-- Add Modal -->
 
 </main>
 
