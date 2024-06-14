@@ -126,3 +126,6 @@ Route::get('/admin/contactus', [AdminContactUsController::class, 'index'])->name
 Route::post('/admin/contactus', [AdminContactUsController::class, 'store'])->name('contactus.store');
 Route::get('/admin/contactus', [AdminContactUsController::class, 'create'])->name('contactus.create');
 Route::get('/admin/contactus/{id}/distroy', [AdminContactUsController::class, 'distroy'])->name('contactus.distroy');
+
+Route::get('/admin/notfound', function () {
+    return view('layouts.admin.notfound'); })->name('notfound');
